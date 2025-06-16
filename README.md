@@ -44,6 +44,7 @@ bgr_color = [255, 0, 0]  # Blue
 
 Press the `d` key while the webcam window is active to stop the detection and exit.
 
+
 ## 📄 License
 
 None
@@ -51,3 +52,6 @@ None
 ---
 
 Made with ❤️ using Python and OpenCV.
+## AUTHOR....
+ SATYAM
+
