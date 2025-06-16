@@ -32,42 +32,6 @@ pip install opencv-python numpy
 - Use `cv.inRange()` to create a mask
 - Find and draw contours on detected objects
 
-## 🧪 Sample Code
-
-```python
-import cv2 as cv
-import numpy as np
-
-def getlimit(color):
-    bgr = np.uint8([[color]])
-    hsvc = cv.cvtColor(bgr, cv.COLOR_BGR2HSV)
-    lower_limit = np.array([max(hsvc[0][0][0] - 10, 0), 100, 100], dtype='uint8')
-    upper_limit = np.array([min(hsvc[0][0][0] + 10, 179), 255, 255], dtype='uint8')
-    return lower_limit, upper_limit
-
-bgr_color = [0, 255, 255]  # Yellow
-lower_limit, upper_limit = getlimit(bgr_color)
-
-vid = cv.VideoCapture(0)
-
-while True:
-    isTrue, frame = vid.read()
-    hsv_frame = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
-    mask = cv.inRange(hsv_frame, lower_limit, upper_limit)
-    contours, _ = cv.findContours(mask, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
-    for contour in contours:
-        area = cv.contourArea(contour)
-        if area > 500:
-            x, y, w, h = cv.boundingRect(contour)
-            cv.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-            cv.imshow("detected", frame)
-    if cv.waitKey(20) & 0xFF == ord('d'):
-        break
-
-vid.release()
-cv.destroyAllWindows()
-```
-
 ## 🎛️ Customization
 
 To detect a different color, change the `bgr_color` list. Example:
@@ -82,7 +46,7 @@ Press the `d` key while the webcam window is active to stop the detection and ex
 
 ## 📄 License
 
-MIT License
+None
 
 ---
 
